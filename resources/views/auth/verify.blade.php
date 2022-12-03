@@ -29,9 +29,6 @@
                             </button>
                         </div>
                     </form>
-
-
-
                 </div>
             </div>
             <div class="mt-5 text-muted text-center">
