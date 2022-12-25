@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::table('users', function (Blueprint $table) {
             //add role to users table
-            $table->string('role')->after('email')->default('user');
+            $table->enum('role',['superadmin','admin','user'])->after('email')->default('user');
         });
     }
 
