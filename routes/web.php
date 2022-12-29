@@ -24,4 +24,12 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('home', function () {
         return view('dashboard.home');
     })->name('home');
+
+    Route::get('change-profile', function () {
+        return view('dashboard.profile');
+    })->name('profile');
+
+    Route::get('change-password', function () {
+        return view('dashboard.password');
+    })->name('password');
 });
