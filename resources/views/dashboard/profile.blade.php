@@ -59,6 +59,74 @@
                             </a>
                         </div>
                     </div>
+                    <div class="card">
+                        @if ($errors->updatePassword->any())
+                            <div class="alert alert-danger">
+                                <ul>
+                                    @foreach ($errors->updatePassword->all() as $error)
+                                        <li>{{ $error }}</li>
+                                    @endforeach
+                                </ul>
+                            </div>
+                        @endif
+
+                        <form method="POST" action="{{ route('user-password.update') }}" class="needs-validation"
+                            novalidate="">
+                            @csrf
+                            @method('PUT')
+                            <div class="card-header">
+                                <h4>Update Password</h4>
+                            </div>
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="form-group col-md-6 col-12">
+                                        <label for="current_password">Current Password</label>
+                                        <input id="current_password" type="password"
+                                            class="form-control @error('current_password') is-invalid @enderror"
+                                            name="current_password" tabindex="2">
+                                        @error('current_password')
+                                            <div class="invalid-feedback">
+                                                {{ $message }}
+                                            </div>
+                                        @enderror
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="form-group col-md-6 col-12">
+                                        <label for="password">New Password</label>
+                                        <input id="password" type="password"
+                                            class="form-control @error('password') is-invalid @enderror" name="password"
+                                            tabindex="2">
+                                        @error('password')
+                                            <div class="invalid-feedback">
+                                                {{ $message }}
+                                            </div>
+                                        @enderror
+                                    </div>
+                                    <div class="form-group col-md-6 col-12">
+
+                                        <label for="password_confirmation" class="d-block">Password Confirmation</label>
+                                        <input id="password_confirmation" type="password"
+                                            class="form-control @error('password_confirmation') is-invalid @enderror"
+                                            name="password_confirmation">
+                                        @error('password_confirmation')
+                                            <div class="invalid-feedback">
+                                                {{ $message }}
+                                            </div>
+                                        @enderror
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="form-group col-md-6 col-12"></div>
+                                </div>
+                                <div class="row"></div>
+                            </div>
+                            <div class="card-footer text-right">
+                                <button type="submit" class="btn btn-danger">Change Password</button>
+                            </div>
+
+                        </form>
+                    </div>
                 </div>
                 <div class="col-12 col-md-12 col-lg-7">
                     <div class="card">
@@ -135,6 +203,7 @@
                     </div>
                 </div>
             </div>
+
         </div>
     </section>
 @endsection
