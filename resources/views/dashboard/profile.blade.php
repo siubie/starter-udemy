@@ -62,16 +62,6 @@
                 </div>
                 <div class="col-12 col-md-12 col-lg-7">
                     <div class="card">
-                        @if ($errors->updateProfileInformation->any())
-                            <div class="alert alert-danger">
-                                <ul>
-                                    @foreach ($errors->updateProfileInformation->all() as $error)
-                                        <li>{{ $error }}</li>
-                                    @endforeach
-                                </ul>
-                            </div>
-                        @endif
-
                         <form method="POST" action="{{ route('user-profile-information.update') }}"
                             class="needs-validation" novalidate="">
                             @csrf
@@ -106,9 +96,10 @@
                                 <div class="row">
                                     <div class="form-group col-md-6 col-12">
                                         <label>Phone</label>
-                                        <input name="phone" class="form-control @error('phone') is-invalid @enderror"
+                                        <input name="phone"
+                                            class="form-control @error('phone', 'updateProfileInformation') is-invalid @enderror"
                                             value="{{ Auth::user()->phone }}">
-                                        @error('phone')
+                                        @error('phone', 'updateProfileInformation')
                                             <div class="invalid-feedback">
                                                 {{ $message }}
                                             </div>
