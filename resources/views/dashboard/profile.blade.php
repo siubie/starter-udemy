@@ -60,16 +60,6 @@
                         </div>
                     </div>
                     <div class="card">
-                        @if ($errors->updatePassword->any())
-                            <div class="alert alert-danger">
-                                <ul>
-                                    @foreach ($errors->updatePassword->all() as $error)
-                                        <li>{{ $error }}</li>
-                                    @endforeach
-                                </ul>
-                            </div>
-                        @endif
-
                         <form method="POST" action="{{ route('user-password.update') }}" class="needs-validation"
                             novalidate="">
                             @csrf
@@ -82,9 +72,9 @@
                                     <div class="form-group col-md-6 col-12">
                                         <label for="current_password">Current Password</label>
                                         <input id="current_password" type="password"
-                                            class="form-control @error('current_password') is-invalid @enderror"
+                                            class="form-control @error('current_password', 'updatePassword') is-invalid @enderror"
                                             name="current_password" tabindex="2">
-                                        @error('current_password')
+                                        @error('current_password', 'updatePassword')
                                             <div class="invalid-feedback">
                                                 {{ $message }}
                                             </div>
@@ -95,9 +85,9 @@
                                     <div class="form-group col-md-6 col-12">
                                         <label for="password">New Password</label>
                                         <input id="password" type="password"
-                                            class="form-control @error('password') is-invalid @enderror" name="password"
-                                            tabindex="2">
-                                        @error('password')
+                                            class="form-control @error('password', 'updatePassword') is-invalid @enderror"
+                                            name="password" tabindex="2">
+                                        @error('password', 'updatePassword')
                                             <div class="invalid-feedback">
                                                 {{ $message }}
                                             </div>
@@ -107,9 +97,9 @@
 
                                         <label for="password_confirmation" class="d-block">Password Confirmation</label>
                                         <input id="password_confirmation" type="password"
-                                            class="form-control @error('password_confirmation') is-invalid @enderror"
+                                            class="form-control @error('password_confirmation', 'updatePassword') is-invalid @enderror"
                                             name="password_confirmation">
-                                        @error('password_confirmation')
+                                        @error('password_confirmation', 'updatePassword')
                                             <div class="invalid-feedback">
                                                 {{ $message }}
                                             </div>
@@ -130,16 +120,6 @@
                 </div>
                 <div class="col-12 col-md-12 col-lg-7">
                     <div class="card">
-                        @if ($errors->updateProfileInformation->any())
-                            <div class="alert alert-danger">
-                                <ul>
-                                    @foreach ($errors->updateProfileInformation->all() as $error)
-                                        <li>{{ $error }}</li>
-                                    @endforeach
-                                </ul>
-                            </div>
-                        @endif
-
                         <form method="POST" action="{{ route('user-profile-information.update') }}"
                             class="needs-validation" novalidate="">
                             @csrf
@@ -152,9 +132,9 @@
                                     <div class="form-group col-md-6 col-12">
                                         <label>Name</label>
                                         <input type="text" name="name"
-                                            class="form-control @error('name') is-invalid @enderror"
+                                            class="form-control @error('name', 'updateProfileInformation') is-invalid @enderror"
                                             value="{{ Auth::user()->name }}">
-                                        @error('name')
+                                        @error('name', 'updateProfileInformation')
                                             <div class="invalid-feedback">
                                                 {{ $message }}
                                             </div>
@@ -162,9 +142,10 @@
                                     </div>
                                     <div class="form-group col-md-6 col-12">
                                         <label>Email</label>
-                                        <input name="email" class="form-control @error('email') is-invalid @enderror"
+                                        <input name="email"
+                                            class="form-control @error('email', 'updateProfileInformation') is-invalid @enderror"
                                             value="{{ Auth::user()->email }}">
-                                        @error('email')
+                                        @error('email', 'updateProfileInformation')
                                             <div class="invalid-feedback">
                                                 {{ $message }}
                                             </div>
@@ -174,9 +155,10 @@
                                 <div class="row">
                                     <div class="form-group col-md-6 col-12">
                                         <label>Phone</label>
-                                        <input name="phone" class="form-control @error('phone') is-invalid @enderror"
+                                        <input name="phone"
+                                            class="form-control @error('phone', 'updateProfileInformation') is-invalid @enderror"
                                             value="{{ Auth::user()->phone }}">
-                                        @error('phone')
+                                        @error('phone', 'updateProfileInformation')
                                             <div class="invalid-feedback">
                                                 {{ $message }}
                                             </div>
@@ -187,7 +169,7 @@
                                     <div class="form-group col-12">
                                         <label>Bio</label>
                                         <textarea class="form-control summernote-simple" name="bio">{{ Auth::user()->bio }}</textarea>
-                                        @error('bio')
+                                        @error('bio', 'updateProfileInformation')
                                             <div class="invalid-feedback">
                                                 {{ $message }}
                                             </div>
