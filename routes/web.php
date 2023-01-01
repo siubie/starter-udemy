@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\UserController;
 use GuzzleHttp\Middleware;
 use Illuminate\Http\Request;
 use Illuminate\Routing\RouteGroup;
@@ -30,7 +31,5 @@ Route::middleware(['auth', 'verified'])->group(function () {
         return view('dashboard.profile');
     })->name('profile');
 
-    Route::get('change-password', function () {
-        return view('dashboard.password');
-    })->name('password');
+    Route::resource('users', UserController::class);
 });
