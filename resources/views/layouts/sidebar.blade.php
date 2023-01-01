@@ -7,6 +7,7 @@
                     </div>
                     <ul class="sidebar-menu">
                         @section('sidebar')
+                            {{-- dashboard --}}
                             <li class="menu-header">Dashboard</li>
                             <li class="nav-item dropdown">
                                 <a href="#" class="nav-link has-dropdown"><i
@@ -19,6 +20,10 @@
                                         <a class="nav-link" href="index.html">Ecommerce Dashboard</a>
                                     </li>
                                 </ul>
+                            </li>
+                            {{-- manage user --}}
+                            <li class="nav-item ">
+                                <a href="#" class="nav-link "><i class="fas fa-users"></i><span>User List</span></a>
                             </li>
                         @show
                     </ul>
