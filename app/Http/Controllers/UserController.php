@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class UserController extends Controller
 {
@@ -12,10 +13,16 @@ class UserController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
         //
-        return view('users.index');
+        $users = DB::table('users')
+            ->when($request->input('search'), function ($query, $search) {
+                $query->where('name', 'like', "%" . $search . "%")
+                    ->orWhere('email', 'like', "%" . $search . "%");
+            })->paginate(5);
+
+        return view('users.index', compact('users'));
     }
 
     /**
