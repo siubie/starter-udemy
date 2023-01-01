@@ -22,10 +22,12 @@
                                 </ul>
                             </li>
                             {{-- manage user --}}
-                            <li class="nav-item ">
-                                <a href="{{ route('users.index') }}" class="nav-link "><i
-                                        class="fas fa-users"></i><span>User List</span></a>
-                            </li>
+                            @can('index-user')
+                                <li class="nav-item ">
+                                    <a href="{{ route('users.index') }}" class="nav-link "><i
+                                            class="fas fa-users"></i><span>User List</span></a>
+                                </li>
+                            @endcan
                         @show
                     </ul>
 

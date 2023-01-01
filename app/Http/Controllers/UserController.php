@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Gate;
 
 class UserController extends Controller
 {
@@ -15,6 +16,9 @@ class UserController extends Controller
      */
     public function index(Request $request)
     {
+        if (Gate::denies('index-user')) {
+            abort(403);
+        }
         //
         $users = DB::table('users')
             ->when($request->input('search'), function ($query, $search) {
