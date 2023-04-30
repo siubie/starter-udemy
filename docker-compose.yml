@@ -23,7 +23,6 @@ services:
             - sail
         depends_on:
             - mysql
-            - mailhog
             - mailpit
     mysql:
         image: 'mysql/mysql-server:8.0'
